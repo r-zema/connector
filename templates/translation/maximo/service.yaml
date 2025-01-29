@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vi-to-maximo-service
+  namespace: default
+spec:
+  selector:
+    app: vi-to-maximo
+  ports:
+    - protocol: TCP
+      port: 8080  # The port the service is exposed on
+      targetPort: 8080  # The container port to forward to
+  type: ClusterIP  # This makes the service only reachable within the cluster

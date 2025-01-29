@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vi-to-maximo-deployment
+  labels:
+    app: vi-to-maximo
+spec:
+  replicas: {{ .Values.vi_to_maximo.replicaCount }}
+  selector:
+    matchLabels:
+      app: vi-to-maximo
+  template:
+    metadata:
+      labels:
+        app: vi-to-maximo
+    spec:
+      containers:
+      - name: vi-to-maximo
+        image: "{{ .Values.vi_to_maximo.image.repository }}:{{ .Values.vi_to_maximo.image.tag }}"
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.vi_to_maximo.service.port }}

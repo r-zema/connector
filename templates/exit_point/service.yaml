@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: exit-point-service
+spec:
+  selector:
+    app: exit-point
+  ports:
+    - protocol: TCP
+      port: 8080  # The port the service is exposed on
+      targetPort: 8080  # The container port to forward to
+  type: ClusterIP  # Default type, primarily for internal access, adjust as needed

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exit-point-deployment
+  labels:
+    app: exit-point
+spec:
+  replicas: {{ .Values.exit_point.replicaCount }}
+  selector:
+    matchLabels:
+      app: exit-point
+  template:
+    metadata:
+      labels:
+        app: exit-point
+    spec:
+      containers:
+      - name: exit-point
+        image: "{{ .Values.exit_point.image.repository }}:{{ .Values.exit_point.image.tag }}"
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.exit_point.service.port }}

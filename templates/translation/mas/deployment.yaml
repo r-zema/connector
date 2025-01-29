@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vi-to-mas-deployment
+  labels:
+    app: vi-to-mas
+spec:
+  replicas: {{ .Values.vi_to_mas.replicaCount }}
+  selector:
+    matchLabels:
+      app: vi-to-mas
+  template:
+    metadata:
+      labels:
+        app: vi-to-mas
+    spec:
+      containers:
+      - name: vi-to-mas
+        image: "{{ .Values.vi_to_mas.image.repository }}:{{ .Values.vi_to_mas.image.tag }}"
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.vi_to_mas.service.port }}

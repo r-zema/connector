@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loki-service
+spec:
+  type: ClusterIP  # Creates an internal cluster service without external access
+  ports:
+    - port: 3100
+      protocol: TCP
+      targetPort: 3100  # Matches the container port specified in the Deployment
+  selector:
+    app: loki  # Matches labels on the Loki pod defined in the Deployment

@@ -1,0 +1,1 @@
+//MAXIMO API structure configurations
