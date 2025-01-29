@@ -1,4 +1,4 @@
-use super::gateway::ApiRequest;  // Add this import
+use super::gateway::ApiRequest;
 
 #[derive(Debug)]
 pub enum AuthorisationError {
@@ -24,7 +24,7 @@ impl Authoriser {
     }
 
     pub fn check_permissions(&self, source: &str, action: &str) -> Result<(), AuthorisationError> {
-        // Authorization logic
+        // Authorisation logic
         todo!()
     }
 }

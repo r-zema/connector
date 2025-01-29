@@ -10,7 +10,7 @@ pub enum RouterError {
     UnknownSystem(String),
 }
 
-#[derive(Debug, Clone, Copy)]  // Add Copy trait
+#[derive(Debug, Clone, Copy)]
 pub enum SystemType {
     VI,
     MAS,
@@ -26,12 +26,12 @@ pub struct ApiRouter {
 pub struct RouteRequest {
     pub source_system: SystemType,
     pub target_system: SystemType,
-    pub payload: String,  // Could be generic over payload type
+    pub payload: String,
 }
 
 pub struct RouteResponse {
     pub status: RouteStatus,
-    pub translated_payload: String,  // Could be generic over payload type
+    pub translated_payload: String,
 }
 
 pub enum RouteStatus {
@@ -56,10 +56,10 @@ impl ApiRouter {
             (SystemType::MAS, SystemType::VI) => {
                 self.handle_mas_to_vi(request).await
             },
-            (SystemType::VI, SystemType::MAXIMO) => {    // Changed from Maximo to MAXIMO
+            (SystemType::VI, SystemType::MAXIMO) => {
                 self.handle_vi_to_maximo(request).await
             },
-            (SystemType::MAXIMO, SystemType::VI) => {    // Changed from Maximo to MAXIMO
+            (SystemType::MAXIMO, SystemType::VI) => {
                 self.handle_maximo_to_vi(request).await
             },
             _ => Err(RouterError::InvalidRoute("Unsupported route".into())),

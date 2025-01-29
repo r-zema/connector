@@ -13,7 +13,7 @@ pub enum MasTranslationError {
     MappingError(String),
 }
 
-// Example data structures (replace with your actual structures)
+// Example data structures for now (replace with actual structures)
 pub struct ViData {
     // VI-specific fields
 }
